@@ -6,7 +6,7 @@ permalink: /about/
 
 # Contact
 
-1. Facebook: fb.me/lvduit
+1. Facebook: http://fb.me/lvduit
 2. Twitter: http://twitter.com/lvduit
 3. Linkedin: http://vn.linkedin.com/in/lvduit/en
 4. Github: http://github.com/lvduit
