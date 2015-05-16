@@ -181,7 +181,9 @@ img {
 }
 
 .site-info {
-  float: left;
+  text-align: center;
+  background: #16a085;
+  color: #fff;
 
   @include mobile {
     float: none;
@@ -192,11 +194,11 @@ img {
 
 .site-name {
   margin: 0;
-  color: $darkGray;
+  color: #fff;
   cursor: pointer;
-  font-family: $helveticaNeue;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
-  font-size: 28px;
+  font-size: 52px;
   letter-spacing: 1px;
 }
 
