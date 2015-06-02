@@ -25,6 +25,15 @@ sudo apt-get install maven
 
 - Cài đặt Libtool: `sudo apt-get install libtool`
 - Clone source: https://github.com/google/protobuf.git
+- Compile and install 
+
+```
+$ ./autogen.sh
+$ ./configure
+$ make
+$ make check
+$ make install
+```
 
 ## Cài đặt OpenRTB-Core 
 
