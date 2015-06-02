@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Build RTB Project - Logs
+author: Van-Duyet Le
 ---
 
 2 source: 
@@ -11,5 +12,8 @@ title: Build RTB Project - Logs
 # 02/06/2015
 
 - Clone source Google openrtb-core
-- Cài đặt protoc: https://github.com/google/protobuf.git <-- Giao thức proto riêng của google.
 - Cài đặt Maven 
+- Cài đặt Libtool: `sudo apt-get install libtool`
+- Cài đặt protoc: https://github.com/google/protobuf.git <-- Giao thức proto riêng của google.
+
+
