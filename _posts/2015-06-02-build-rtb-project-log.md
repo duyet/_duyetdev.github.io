@@ -36,7 +36,16 @@ $ make install
 ```
 
 Update: không nhận lib 
-`export LD_LIBRARY_PATH=/usr/local/lib`
+*export LD_LIBRARY_PATH=/usr/local/lib*
+
+Update không nhận protoc trong maven: 
+
+```
+git clone https://github.com/usmanismail/maven-protoc-plugin.git
+cd maven-protoc-plugin
+mvn clean install
+
+```
 
 ## Cài đặt OpenRTB-Core 
 
