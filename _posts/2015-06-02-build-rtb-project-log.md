@@ -35,6 +35,9 @@ $ make check
 $ make install
 ```
 
+Update: không nhận lib 
+`export LD_LIBRARY_PATH=/usr/local/lib`
+
 ## Cài đặt OpenRTB-Core 
 
 Đây là bộ RTB Core của Google, Download và Build bằng Maven 
