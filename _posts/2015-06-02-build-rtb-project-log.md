@@ -31,7 +31,7 @@ sudo apt-get install maven
 Đây là bộ RTB Core của Google, Download và Build bằng Maven 
 
 - Clone source Google openrtb-core
-- 
+
 ```
 git clone https://github.com/google/openrtb
 cd openrtb
