@@ -11,9 +11,34 @@ author: Van-Duyet Le
 ----------------------
 # 02/06/2015
 
-- Clone source Google openrtb-core
-- Cài đặt Maven 
+### Cài đặt Maven 
+
+(Ubuntu)
+```
+sudo apt-get install maven
+```
+
+### Cài đặt *protobuf*
+
+`protoc` giao thức truyền thông điệp của Google
+
 - Cài đặt Libtool: `sudo apt-get install libtool`
-- Cài đặt protoc: https://github.com/google/protobuf.git <-- Giao thức proto riêng của google.
+- Clone source: https://github.com/google/protobuf.git
+
+## Cài đặt OpenRTB-Core 
+
+Đây là bộ RTB Core của Google, Download và Build bằng Maven 
+
+- Clone source Google openrtb-core
+```
+git clone https://github.com/google/openrtb
+cd openrtb
+```
+- Build, deploy các kiểu
+```
+mvn clean build 
+```
+
+------------
 
 
