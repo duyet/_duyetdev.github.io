@@ -3,6 +3,11 @@ layout: post
 title: Note 18/06/2015
 ---
 
+# b. Thiết kế UI 
+
+<img src="http://i.imgur.com/yd9Me01.png" />
+
+
 # c. Trình bày các công nghệ nổi bật đã áp dụng khi thực hiện dự án.
 
 Hệ thống quản lý thư viện (ULib) sử dụng công nghệ mới nhất của Nodejs theo mô hình Client-Server. 
