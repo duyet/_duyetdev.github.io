@@ -33,8 +33,7 @@ Mức độ hoàn thành: một số chức năng chưa hoàn thiện
 
 Tự đánh giá mức độ: 80%
 
-# e. Trình bày những vấn đề gặp phải khi thực hiện dự án và nêu giải pháp để
-giải quyết chúng.
+# e. Trình bày những vấn đề gặp phải khi thực hiện dự án và nêu giải pháp để giải quyết chúng.
 
 * Phân công công việc chưa tốt, làm việc nhóm chưa hiệu quả 
 * Chưa chia các mốc thời gian để thực hiện dự án chưa hợp lý.
@@ -43,3 +42,5 @@ Giải quyết: chém ... chém ...
 
 # f. Nêu những bài học (Lesson Learned) sau khi thực hiện dự án.
 
+....
+từ từ viết 
