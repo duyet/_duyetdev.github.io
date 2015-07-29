@@ -9,4 +9,4 @@ Hello world! I'm Van-Duyet Le - Full Stack developer.
 
 Van-Duyet Le (lvduit08@gmail.com) 
 
-Blog: http://blog.lvduit.com 
+Blog: http://blog.duyetdev.com 
