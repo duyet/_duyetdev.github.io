@@ -54,3 +54,8 @@ And run:
 ````
 sudo /usr/sbin/update-ca-certificates
 ````
+
+## edX Staff Docs 
+
+http://edx-partner-course-staff.readthedocs.org/en/latest/index.html
+
