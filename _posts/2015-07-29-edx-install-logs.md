@@ -1,8 +1,9 @@
 ---
 layout: post
-title: Đa hình C++
+title: edX Installion Logs.
 ---
 
+````
 PLAY [Configure instance(s)] ************************************************** 
 
 GATHERING FACTS *************************************************************** 
@@ -5813,3 +5814,4 @@ Listing /edx/app/edxapp/edx-platform/src/zendesk/.git/objects/pack ...
 Listing /edx/app/edxapp/edx-platform/src/zendesk/.git/refs ...
 Listing /edx/app/edxapp/edx-platform/src/zendesk/.git/refs/heads ...
 Listing /edx/app/edxapp/edx-platform/src/zendesk/.git/refs/remotes ...
+````
