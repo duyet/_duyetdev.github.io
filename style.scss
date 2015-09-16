@@ -19,8 +19,10 @@ html {
 
 body {
 	background: $white;
-  font: 16px/1.4 $helvetica;
-  color: $darkGray;
+	font: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #606c71;
+	font-size: 16px;
+    	line-height: 1.5;
 }
 
 .container {
@@ -151,7 +153,11 @@ img {
 //
 
 .wrapper-masthead {
-  margin-bottom: 25px;
+	margin-bottom: 25px;
+	color: #fff;
+	text-align: center;
+	background-color: #159957;
+	background-image: linear-gradient(120deg, #155799, #159957);
 }
 
 .masthead {
@@ -181,7 +187,6 @@ img {
 
 .site-info {
   text-align: center;
-  background: #16a085;
   color: #fff;
 
   @include mobile {
