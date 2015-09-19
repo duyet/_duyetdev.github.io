@@ -102,3 +102,64 @@ If you end up with a few lines eventually saying OpenERP (Yes. The log still say
 If there are errors, you’ll need to go back and find out where the problem is.
 
 Otherwise simply enter CTL+C to stop the server and then exit to leave the openerp user account and go back to your own shell.
+
+# Step 6. Installing the boot script
+For the final step we need to install a script which will be used to start-up and shut down the server automatically and also run the application as the correct user. There is a script you can use in `/opt/odoo/debian/init` but this will need a few small modifications to work with the system installed the way I have described above. Here’s a link to the one I’ve already modified for Odoo version 8.
+
+Similar to the configuration file, you need to either copy it or paste the contents of this script to a file in `/etc/init.d/` and call it `odoo-server`. Once it is in the right place you will need to make it executable and owned by root:
+
+````
+sudo chmod 755 /etc/init.d/odoo-server
+sudo chown root: /etc/init.d/odoo-server
+````
+
+In the configuration file there’s an entry for the server’s log file. We need to create that directory first so that the server has somewhere to log to and also we must make it writeable by the openerp user:
+
+````
+sudo mkdir /var/log/odoo
+sudo chown odoo:root /var/log/odoo
+````
+
+# Step 7. Testing the server
+To start the Odoo server type:
+````
+sudo /etc/init.d/odoo-server start
+````
+
+You should now be able to view the logfile and see that the server has started.
+````
+less /var/log/odoo/odoo-server.log
+````
+
+If the log file looks OK, now point your web browser at the domain or `IP address of your Odoo server` (or `localhost` if you are on the same machine) and use port `8069`. The url will look something like this:
+````
+http://localhost:8069
+````
+
+What you should see is a screen like this one (it is the Database Management Screen because you have no Odoo databases yet):
+
+Default plain password: `/etc/odoo-server.conf`
+
+After test, Now it’s time to make sure the server stops properly too:
+````
+sudo /etc/init.d/odoo-server stop
+````
+
+Check the log file again to make sure it has stopped and/or look at your server’s process list.
+
+# Step 8. Automating Odoo startup and shutdown
+If everything above seems to be working OK, the final step is make the script start and stop automatically with the Ubuntu Server. To do this type:
+````
+sudo update-rc.d odoo-server defaults
+````
+
+You can now try rebooting you server if you like. Odoo should be running by the time you log back in.
+
+If you type `ps aux | grep odoo` you should see a line similar to this:
+````
+odoo 1491 0.1 10.6 207132 53596 ? Sl 22:23 0:02 python /opt/odoo/openerp-server -c /etc/odoo-server.conf
+````
+
+Which shows that the server is running. And of course you can check the logfile or visit the server from your web browser too.
+
+That’s it! 
