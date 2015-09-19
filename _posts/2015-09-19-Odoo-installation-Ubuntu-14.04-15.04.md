@@ -71,7 +71,7 @@ Grab a copy of the most current Odoo 8 branch (Note the “.” at the end of th
 git clone https://www.github.com/odoo/odoo --depth 1 --branch 8.0 --single-branch .
 ````
 
-Step 5. Configuring the OpenERP application
+# Step 5. Configuring the OpenERP application
 The default configuration file for the server (`/opt/odoo/debian/openerp-server.conf`) is actually very minimal and will, with only a small change work fine so we’ll copy that file to where we need it and change it’s ownership and permissions:
 
 ````
@@ -82,7 +82,9 @@ sudo chmod 640 /etc/odoo-server.conf
 
 The above commands make the file owned and writeable only by the odoo user and group and only readable by odoo and root.
 
-To allow the odoo server to run initially, you should only need to change two lines in this file. Toward to the top of the file change the line db_password = False to the same password you used back in step 3. Then modify the line addons_path = /usr/lib/python2.7/dist-packages/openerp/addons so that it reads addons_path = /opt/odoo/addons instead.
+To allow the odoo server to run initially, you should only need to change two lines in this file. Toward to the top of the file change the line `db_password = False` to the same password you used back in step 3. 
+
+Then modify the line `addons_path = /usr/lib/python2.7/dist-packages/openerp/addons` so that it reads `addons_path = /opt/odoo/addons` instead.
 
 One other line we might as well add to the configuration file now, is to tell Odoo where to write its log file. To complement my suggested location below add the following line to the odoo-server.conf file:
 ````
