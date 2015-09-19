@@ -118,7 +118,14 @@ Otherwise simply enter CTL+C to stop the server and then exit to leave the opene
 # Step 6. Installing the boot script
 For the final step we need to install a script which will be used to start-up and shut down the server automatically and also run the application as the correct user. There is a script you can use in `/opt/odoo/debian/init` but this will need a few small modifications to work with the system installed the way I have described above. Here’s a link to the one I’ve already modified for Odoo version 8.
 
+TD;DR: 
+
+````
+sudo cp /opt/odoo/debian/init /etc/init.d/odoo-server
+````
+
 Similar to the configuration file, you need to either copy it or paste the contents of this script to a file in `/etc/init.d/` and call it `odoo-server`. Once it is in the right place you will need to make it executable and owned by root:
+
 
 ````
 sudo chmod 755 /etc/init.d/odoo-server
