@@ -28,19 +28,21 @@ sudo apt-get install postgresql
 Then configure the Odoo user on **postgres**:
 
 First change to the postgres user so we have the necessary privileges to configure the database.
-````
+
+````bash
 sudo su - postgres
 ````
 
 Now create a new database user. This is so Odoo has access rights to connect to PostgreSQL and to create and drop databases. Remember what your choice of password is here; you will need it later on:
 
-````
+````bash
 createuser --createdb --username postgres --no-createrole --no-superuser --pwprompt odoo
 Enter password for new role: ********
 Enter it again: ********
 ````
 
 Finally exit from the postgres user account:
+
 ````
 exit
 ````
@@ -91,14 +93,19 @@ To allow the odoo server to run initially, you should only need to change two li
 Then modify the line `addons_path = /usr/lib/python2.7/dist-packages/openerp/addons` so that it reads `addons_path = /opt/odoo/addons` instead.
 
 One other line we might as well add to the configuration file now, is to tell Odoo where to write its log file. To complement my suggested location below add the following line to the odoo-server.conf file:
+
 ````
 logfile = /var/log/odoo/odoo-server.log
 ````
+
 Use your favourite text editor here. I tend to use nano, e.g.
+
 ````
 sudo nano /etc/odoo-server.conf
 ````
+
 Once the configuration file is edited and saved, you can start the server just to check if it actually runs.
+
 ````
 sudo su - odoo -s /bin/bash
 /opt/odoo/openerp-server
@@ -128,16 +135,19 @@ sudo chown odoo:root /var/log/odoo
 
 # Step 7. Testing the server
 To start the Odoo server type:
+
 ````
 sudo /etc/init.d/odoo-server start
 ````
 
 You should now be able to view the logfile and see that the server has started.
+
 ````
 less /var/log/odoo/odoo-server.log
 ````
 
 If the log file looks OK, now point your web browser at the domain or `IP address of your Odoo server` (or `localhost` if you are on the same machine) and use port `8069`. The url will look something like this:
+
 ````
 http://localhost:8069
 ````
@@ -147,6 +157,7 @@ What you should see is a screen like this one (it is the Database Management Scr
 Default plain password: `/etc/odoo-server.conf`
 
 After test, Now itâ€™s time to make sure the server stops properly too:
+
 ````
 sudo /etc/init.d/odoo-server stop
 ````
@@ -155,6 +166,7 @@ Check the log file again to make sure it has stopped and/or look at your serverâ
 
 # Step 8. Automating Odoo startup and shutdown
 If everything above seems to be working OK, the final step is make the script start and stop automatically with the Ubuntu Server. To do this type:
+
 ````
 sudo update-rc.d odoo-server defaults
 ````
@@ -162,6 +174,7 @@ sudo update-rc.d odoo-server defaults
 You can now try rebooting you server if you like. Odoo should be running by the time you log back in.
 
 If you type `ps aux | grep odoo` you should see a line similar to this:
+
 ````
 odoo 1491 0.1 10.6 207132 53596 ? Sl 22:23 0:02 python /opt/odoo/openerp-server -c /etc/odoo-server.conf
 ````
