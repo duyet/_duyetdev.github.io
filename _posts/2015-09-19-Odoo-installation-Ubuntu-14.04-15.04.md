@@ -88,21 +88,18 @@ sudo chmod 640 /etc/odoo-server.conf
 
 The above commands make the file owned and writeable only by the odoo user and group and only readable by odoo and root.
 
-To allow the odoo server to run initially, you should only need to change two lines in this file. Toward to the top of the file change the line `db_password = False` to the same password you used back in step 3. 
+To allow the odoo server to run initially, you should only need to change two lines in this file. 
+Open file via **nano** or **vim** or your favourite text editor here
 
-Then modify the line `addons_path = /usr/lib/python2.7/dist-packages/openerp/addons` so that it reads `addons_path = /opt/odoo/addons` instead.
-
-One other line we might as well add to the configuration file now, is to tell Odoo where to write its log file. To complement my suggested location below add the following line to the odoo-server.conf file:
-
-````
-logfile = /var/log/odoo/odoo-server.log
-````
-
-Use your favourite text editor here. I tend to use nano, e.g.
-
-````
+I'm using nano:
+````bash
 sudo nano /etc/odoo-server.conf
 ````
+
+And change: 
+* `db_password = False` to the same password you used back in step 2.
+* Then modify the line `addons_path = /usr/lib/python2.7/dist-packages/openerp/addons` so that it reads `addons_path = /opt/odoo/addons` instead
+* `logfile = /var/log/odoo/odoo-server.log` the path of log file
 
 Once the configuration file is edited and saved, you can start the server just to check if it actually runs.
 
@@ -110,6 +107,7 @@ Once the configuration file is edited and saved, you can start the server just t
 sudo su - odoo -s /bin/bash
 /opt/odoo/openerp-server
 ````
+
 If you end up with a few lines eventually saying OpenERP (Yes. The log still says OpenERP and not Odoo) is running and waiting for connections then you are all set.
 
 If there are errors, you’ll need to go back and find out where the problem is.
