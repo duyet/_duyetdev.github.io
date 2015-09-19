@@ -57,17 +57,21 @@ python-werkzeug python-xlwt python-yaml wkhtmltopdf
 
 # Step 4. Install the Odoo server
 Install Git.
+
 ````
 sudo apt-get install git
 ````
 
 Switch to the Odoo user:
+
 ````
 sudo su - odoo -s /bin/bash
 ````
 
 Grab a copy of the most current Odoo 8 branch (Note the “.” at the end of this command!):
+
 ````
+cd /opt/odoo
 git clone https://www.github.com/odoo/odoo --depth 1 --branch 8.0 --single-branch .
 ````
 
