@@ -97,6 +97,7 @@ sudo nano /etc/odoo-server.conf
 ````
 
 And change: 
+
 * `db_password = False` to the same password you used back in step 2.
 * Then modify the line `addons_path = /usr/lib/python2.7/dist-packages/openerp/addons` so that it reads `addons_path = /opt/odoo/addons` instead
 * `logfile = /var/log/odoo/odoo-server.log` the path of log file
