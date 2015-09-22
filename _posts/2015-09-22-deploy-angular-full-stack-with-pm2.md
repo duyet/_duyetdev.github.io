@@ -39,6 +39,7 @@ Pm2 will start Angular-Fulltack App on port `9000`, see `http://localhost:9000`
 <img src="https://assets.digitalocean.com/articles/nodejs/node_diagram.png" />
 
 Open the default server block configuration file for editing:
+
 ```sh
 sudo vi /etc/nginx/sites-available/default
 ```
@@ -48,6 +49,7 @@ Be sure to substitute your own domain name for the server_name directive
 (or IP address if you don't have a domain set up), and the app server private 
 IP address for the `APP_PRIVATE_IP_ADDRESS`. Additionally, change the port (`9000`) 
 if your application is set to listen on a different port:
+
 ```
 server {
     listen 80;
