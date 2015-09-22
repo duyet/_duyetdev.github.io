@@ -36,6 +36,8 @@ Pm2 will start Angular-Fulltack App on port `9000`, see `http://localhost:9000`
 
 ## Set Up Reverse Proxy Server
 
+<img src="https://assets.digitalocean.com/articles/nodejs/node_diagram.png" />
+
 Open the default server block configuration file for editing:
 ```sh
 sudo vi /etc/nginx/sites-available/default
