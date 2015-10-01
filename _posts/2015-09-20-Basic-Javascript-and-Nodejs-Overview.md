@@ -21,16 +21,16 @@ Learn the basics of Javascript and Nodejs
 ==> constant, variable, for/while loop 
 
 # Level 2:
- - Manipulating text with "string functions"
+ - Manipulating text with "string functions" (http://www.w3schools.com/jsref/jsref_obj_string.asp)
  - Creating functions
- 	+ Variable scope and parameters
-	+ Calling functions inside functions
- - Function with Math object 
- 	+ Generate random numbers
+ 	+ Variable scope and parameters (http://www.w3schools.com/js/js_function_definition.asp)
+ - Function with Math object (http://www.w3schools.com/js/js_math.asp)
+ 	+ Generate random numbers [Ex: write a function, generate a number start from x to y]
+ - **Callback**
  - Storing lists with "arrays"
- 	+ Initial Array
+ 	+ Initial Array (http://www.w3schools.com/js/js_arrays.asp)
  	+ Sorting and printing lists
- 	+ The modulus operator
+ 	+ Array method (http://www.w3schools.com/js/js_array_methods.asp)
 
 ==> String/String functions, Create functions, Math Object, Array/Array functions
 
