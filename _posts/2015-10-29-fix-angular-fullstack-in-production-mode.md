@@ -3,6 +3,7 @@ layout: post
 title: Fix Angular-fullstack in production mode
 --
 
+
 <p>Given that you are using the <code>Gruntfile.js</code> provided by <strong>angular fullstack</strong> we will edit it and fix the bug I discovered. Change to your project root and type:</p>
 
 <pre><code>$ sudo emacs Gruntfile.js
