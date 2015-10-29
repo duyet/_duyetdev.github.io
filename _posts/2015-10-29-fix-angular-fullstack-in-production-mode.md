@@ -3,61 +3,129 @@ layout: post
 title: Fix Angular-fullstack in production mode
 --
 
+Given that you are using the `Gruntfile.js` provided by **angular fullstack** we will edit it and fix the bug I discovered. Change to your project root and type:
 
-<p>Given that you are using the <code>Gruntfile.js</code> provided by <strong>angular fullstack</strong> we will edit it and fix the bug I discovered. Change to your project root and type:</p>
+    $ sudo emacs Gruntfile.js
 
-<pre><code>$ sudo emacs Gruntfile.js
-</code></pre>
+## Fix Font-Awesome Bug
 
-<h2 id="fixfontawesomebug">Fix Font-Awesome Bug</h2>
+Insert these lines in order to fix [Font Awesome](https://github.com/DaftMonk/generator-angular-fullstack/issues/421) and the [app.css](https://github.com/DaftMonk/generator-angular-fullstack/issues/792) bug:
 
-<p>Insert these lines in order to fix <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues/421">Font Awesome</a> and the <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues/792">app.css</a> bug:</p>
+```js
+//copy.dist.files
+//
+{
+    // include font-awesome webfonts
+    //
+    expand: true,
+    dot: true,
+    cwd: '<%= yeoman.client %>/bower_components/font-awesome',
+    src: ['fonts/*.*'],
+    dest: '<%= yeoman.dist %>/public/assets'
+},{
+    // include bootstrap webfonts
+    //
+    expand: true,
+    dot: true,
+    cwd: '<%= yeoman.client %>/bower_components/bootstrap/dist',
+    src: ['fonts/*.*'],
+    dest: '<%= yeoman.dist %>/public/assets'
+}
 
-<script src="https://gist.github.com/nottinhill/212ea263cc419016016d.js"></script>
+//copy.serve.files (add this target)
+    copy: {
+      serve: {
+        files: [{
+          // include font-awesome webfonts
+          expand: true,
+          dot: true,
+          cwd: '<%= yeoman.client %>/bower_components/font-awesome',
+          src: ['fonts/*.*'],
+          dest: '<%= yeoman.client %>/assets'
+        }]
+      }
 
-<p>In addition to above changes, go into your <code>app.css</code> and change all lines like this; instead of the bower_components directory:</p>
+// rev.dist.file.source
+//
+'<%= yeoman.dist %>/public/assets/fonts/*'
 
-<pre><code>src: url('../assets/fonts/fontawesome-webfont.eot?v=4.1.0');
-</code></pre>
+// usemin.options.patterns:
+//
+css: [
+   [/(..\/fonts\/)/g, 'Fix webfonts path', function(match) {
+      return match.replace('../fonts/', '../assets/fonts/');
+    }]
+]
+    
+// Prevent app.css index.html injection
+  css: {
+    options: {
+      transform: function(filePath) {
+        filePath = filePath.replace('/client/', '');
+        filePath = filePath.replace('/.tmp/', '');
+        return '<link rel="stylesheet" href="' + filePath + '">';
+      },
+      starttag: '<!-- injector:css -->',
+      endtag: '<!-- endinjector -->'
+    },
+    files: {
+      '<%= yeoman.client %>/index.html': [
+        '<%= yeoman.client %>/{app,components}/**/*.css',
+        '!<%= yeoman.client %>/app/app.css'  //this is the line to be added to prevent app.css from being loaded twice  --
+      ]
+    }
+}
+```
 
-<h2 id="figgooglewebfontbug">Fig Google Webfont Bug</h2>
+In addition to above changes, go into your `app.css` and change all lines like this; instead of the bower_components directory:
 
-<p>The Build ignores Google font paths. THus go to the top of your bootstrap file, and look for any google web font imports, e.g. at the top of the file:</p>
+```
+src: url('../assets/fonts/fontawesome-webfont.eot?v=4.1.0');
+```
 
-<p><strong>/bootstrap_components/bootswatch-dist/css/bootstrap.css</strong></p>
+## Fix Google Webfont Bug
 
-<p>We see a </p>
+The Build ignores Google font paths. Thus go to the top of your bootstrap file, and look for any google web font imports, e.g. at the top of the file:
 
-<pre><code>@import url("//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic");
-</code></pre>
+```
+/bootstrap_components/bootswatch-dist/css/bootstrap.css
+```
 
-<p>Minify tasks inside of our grunt task runner will effectively destroy this (at least from my troubleshooting findings I would call it that). In order to fix this bug, we have to hard code the font into the index.html. Yes its ugly,but its a quick fix, so stop complaining. Put this in the top of your index.html file, right after the meta tags and outside the yeoman template comments:</p>
+We see a
 
-<pre><code> ....
-&lt;meta name="viewport" content="width=device-width"&gt;
-&lt;link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'&gt;
-</code></pre>
+```
+@import url("//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic");
+```
 
-<h2 id="fiximageminbug">Fix imagemin Bug</h2>
+Minify tasks inside of our grunt task runner will effectively destroy this (at least from my troubleshooting findings I would call it that). In order to fix this bug, we have to hard code the font into the index.html. Yes its ugly,but its a quick fix, so stop complaining. Put this in the top of your index.html file, right after the meta tags and outside the yeoman template comments:
+```html
+....
+<meta name="viewport" content="width=device-width">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+```
 
-<p>Now you might hit another bug, especially when using a Mac and grunt to build the project:</p>
+## Fix imagemin Bug
 
-<p><code>Warning: Running "imagemin:dist" (imagemin) task</code></p>
+Now you might hit another bug, especially when using a Mac and grunt to build the project:
 
-<p>In order to workaround this bug you usually would:</p>
+```
+Warning: Running "imagemin:dist" (imagemin) task`
+```
 
-<pre><code>$ brew install libpng
-</code></pre>
+In order to workaround this bug you usually would:
 
-<p>then rebuild the imagemin grunt plugin with </p>
+    $ brew install libpng
 
-<p><code>$ npm install grunt-contrib-imagemin</code></p>
+then rebuild the imagemin grunt plugin with
 
-<p>Now, when building with <code>grunt build:dist</code> you are still getting the error about imagemin, try getting the latest MacOSX binary from the git repo with:</p>
+```
+$ npm install grunt-contrib-imagemin
+```
 
-<pre><code>git clone https://github.com/imagemin/pngquant-bin.git
-sudo cp pngquant-bin/vendor/osx/pngquant /usr/local/bin/
-sudo chmod +x /usr/local/bin/pngquant
-</code></pre>
+Now, when building with `grunt build:dist` you are still getting the error about imagemin, try getting the latest MacOSX binary from the git repo with:
 
-<p>Now rebuild imagemin with npm and the error message should be gone. Further troubleshooting can be found here: <a href="https://github.com/gruntjs/grunt-contrib-imagemin/issues/254">https://github.com/gruntjs/grunt-contrib-imagemin/issues/254</a></p>
+    git clone https://github.com/imagemin/pngquant-bin.git
+    sudo cp pngquant-bin/vendor/osx/pngquant /usr/local/bin/
+    sudo chmod +x /usr/local/bin/pngquant
+
+Now rebuild imagemin with npm and the error message should be gone. Further troubleshooting can be found here: [https://github.com/gruntjs/grunt-contrib-imagemin/issues/254](https://github.com/gruntjs/grunt-contrib-imagemin/issues/254)
