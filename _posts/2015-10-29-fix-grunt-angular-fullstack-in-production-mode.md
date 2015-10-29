@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Fix Angular fullstack in production mode
+title: Fix Grunt file angular-fullstack in production mode
 ---
 
 Given that you are using the `Gruntfile.js` provided by **angular fullstack** we will edit it and fix the bug I discovered. Change to your project root and type:
