@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Machine learning Timeline 
+---
 
 # WEEK 1
 * Linear Regression with One Variable
